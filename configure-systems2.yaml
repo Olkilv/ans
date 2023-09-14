@@ -1,13 +1,11 @@
 # Playbook to call multiple roles to configure systems
 - name: Configure systems
-  hosts: 10.180.1.14
   hosts: 10.180.1.29
   become: yes
 
   tasks:
 
 - name: Call Roles
-  hosts: 10.180.1.14
   hosts: 10.180.1.29
   roles:
    #- hostname
