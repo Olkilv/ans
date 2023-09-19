@@ -1,15 +1,8 @@
 # Playbook to call multiple roles to configure systems
-- name: Configure systems
-  hosts: 10.180.1.29,10.180.1.14
-  become: yes
-
+---
+- hosts: all
+  vars:
+    message: "Hello world!"
   tasks:
-
-- name: Call Roles
-  hosts: 10.180.1.29,10.180.1.14
-  roles:
-   #- hostname
-   #- firewalld
-   #- ntp-config
-   #- motd
-  -hello
+  - name: Print hello world
+    command: echo "{{ message }}"
