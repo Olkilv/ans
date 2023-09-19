@@ -1,10 +1,25 @@
 ---
 - hosts: all
-  vars:
-    update_command:
-      centos: "yum update -y"
-      ubuntu: "apt update -y"
+  become: yes
+
   tasks:
-  - name: Update server packages
-    command: "{{ update_command }}"
-    when: ansible_os_family == update_command | split(' ') | first
+
+    - name: Install system updates for centos systems
+      yum:
+        name: '*'
+        state: latest
+        update_cache: yes
+       #cache_valid_time: 3600
+      when:
+        - ansible_os_family == "RedHat"
+        - ansible_distribution == "CentOS"
+
+    - name: Install system updates for ubuntu systems
+      apt:
+        name: '*'
+        state: latest
+        update_cache: yes
+       #cache_valid_time: 3600
+      when:
+        - ansible_os_family == "Debian"
+        - ansible_distribution == "Ubuntu"
