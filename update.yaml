@@ -1,0 +1,10 @@
+---
+- hosts: all
+  vars:
+    update_command:
+      centos: "yum update -y"
+      ubuntu: "apt update -y"
+  tasks:
+  - name: Update server packages
+    command: "{{ update_command }}"
+    when: ansible_os_family == '{{ update_command | word(0) }}'
