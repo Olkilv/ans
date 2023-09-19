@@ -7,4 +7,4 @@
   tasks:
   - name: Update server packages
     command: "{{ update_command }}"
-    when: ansible_os_family == update_command | split(' ')[0]
+    when: ansible_os_family == update_command | split(' ') | first
