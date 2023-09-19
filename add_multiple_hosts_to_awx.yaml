@@ -4,15 +4,8 @@
   become: True
   tasks:
   - name: Add host1
-      action: awx.awx.inventory_host
-      name: host1
-      description: This is the first host.
-      variables: {"ansible_ssh_user": "root"}
-      groups: ["all"]
-
-  - name: Add host2
-      action: awx.awx.inventory_host
-      name: host2
-      description: This is the second host.
-      variables: {"ansible_ssh_user": "root"}
-      groups: ["all"]
+    action: awx.awx.inventory_host
+    name: host1
+    description: This is the first host.
+    variables: {"ansible_ssh_user": "root"}
+    groups: ["all"]
