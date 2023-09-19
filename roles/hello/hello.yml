@@ -1,0 +1,7 @@
+---
+- hosts: all
+  vars:
+    message: "Hello world!"
+  tasks:
+  - name: Print hello world
+    command: echo "{{ message }}"
