@@ -1,0 +1,8 @@
+    - name: "Run Update Session Orchestrator check to clear GUI cached results"
+      ansible.windows.win_shell: |
+        Stop-Service -Name BITS,WaaSMedicSvc,WUAUSERV,CryptSvc -Force
+        Remove-Item -Path C:\Windows\System32\catroot2 -Recurse -Force
+        Remove-Item -Path C:\Windows\SoftwareDistribution -Recurse -Force
+        Start-Service -Name BITS,WaaSMedicSvc,WUAUSERV,CryptSvc
+        UsoClient RefreshSettings
+        UsoClient ScanInstallWait
